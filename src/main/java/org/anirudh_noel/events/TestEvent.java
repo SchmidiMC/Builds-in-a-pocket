@@ -10,6 +10,8 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.util.Vector;
 
+import static org.anirudh_noel.utils.DEFAULT_VALUES.*;
+
 @de.schmidimc.mc.common.annotation.Listener
 public class TestEvent implements Listener {
 
@@ -38,11 +40,6 @@ public class TestEvent implements Listener {
       Schemas.WOODEN_MANUAL_CANNON.place(event.getPlayer().getWorld(),position, getDirection(event.getPlayer()));
 
    }
-
-   public static final Vector N = new Vector(-1, 0, 0);
-   public static final Vector E = new Vector(0, 0, -1);
-   public static final Vector W = new Vector(0, 0, 1);
-   public static final Vector S = new Vector(1, 0, 0);
 
    public static Vector getDirection(Player player) {
 

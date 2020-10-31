@@ -20,6 +20,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 
+import static org.anirudh_noel.utils.DEFAULT_VALUES.*;
+
 public enum Schemas {
 
    WOODEN_MANUAL_CANNON("D:\\Server\\SpigotServer\\plugins\\WorldEdit\\schematics\\test.schem");
@@ -43,15 +45,36 @@ public enum Schemas {
       try (EditSession editSession = WorldEdit.getInstance().getEditSessionFactory().getEditSession(BukkitAdapter.adapt(world), -1)) {
 
          ClipboardHolder clipboardHolder = new ClipboardHolder(clipboard);
+         int w = Math.floorDiv(clipboard.getDimensions().getX(), 2);
 
-         clipboardHolder.setTransform(new AffineTransform().rotateY(90));
+         AffineTransform transform = new AffineTransform();
+
+         /*  */
+         if (N.equals(direction)) {
+            transform = transform.translate(3, 0, w);
+            transform = transform.rotateY(90);
+
+         } else if (E.equals(direction)) {
+            transform = transform.translate(-w, 0, 3);
+//            transform = transform.rotateY(0);
+
+         } else if (S.equals(direction)) {
+            transform = transform.translate(-3, 0, -w);
+            transform = transform.rotateY(-90);
+
+         } else if (W.equals(direction)) {
+            transform = transform.translate(w, 0, -3);
+            transform = transform.rotateY(180);
+
+         }
+
+         clipboardHolder.setTransform(transform);
 
          Operation operation = clipboardHolder
               .createPaste(editSession)
               .to(BukkitAdapter.asBlockVector(position))
               .ignoreAirBlocks(false)
               .build();
-
 
          Operations.complete(operation);
 
