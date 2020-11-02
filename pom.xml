@@ -20,6 +20,10 @@
 			<name>My Private Maven Repositoty on Repsy</name>
 			<url>https://repo.repsy.io/mvn/robatsky/robamidi</url>
 		</repository>
+        <repository>
+            <id>enginehub-maven</id>
+            <url>http://maven.enginehub.org/repo/</url>
+        </repository>
 	</repositories>
 
 	<dependencies>
@@ -45,6 +49,13 @@
 			<artifactId>de.schmidimc.mc-common</artifactId>
 			<version>1.0-SNAPSHOT</version>
 		</dependency>
+
+        <dependency>
+            <groupId>com.sk89q.worldedit</groupId>
+            <artifactId>worldedit-bukkit</artifactId>
+            <version>7.2.0-SNAPSHOT</version>
+            <scope>provided</scope>
+        </dependency>
 	</dependencies>
 
 	<build>
