@@ -1,5 +1,6 @@
 package org.anirudh_noel;
 
+import org.anirudh_noel.services.PocketBlockService;
 import org.anirudh_noel.utils.BukkitRecipeService;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -13,18 +14,28 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class Start extends JavaPlugin {
 
 	private BukkitRecipeService recipeService;
+	private PocketBlockService pocketBlockService;
 
 	@Override
 	public void onEnable() {
 
+		PluginInitializer.init(this);
+
+		this.pocketBlockService = new PocketBlockService(this);
 		this.recipeService = new BukkitRecipeService(this);
 		Bukkit.getConsoleSender().sendMessage(ChatColor.GREEN + "Plugin started!");
-
-		PluginInitializer.init(this);
 	}
 
 	@Override
 	public void onDisable() {
+	}
+
+	public PocketBlockService getPocketBlockService() {
+		return pocketBlockService;
+	}
+	
+	public BukkitRecipeService getRecipeService() {
+		return recipeService;
 	}
 
 }
