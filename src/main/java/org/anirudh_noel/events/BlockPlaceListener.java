@@ -21,32 +21,40 @@ public class BlockPlaceListener implements org.bukkit.event.Listener {
 
 	private Start plugin;
 	private PocketBlockService pocketBlockService;
-	
+
 	public BlockPlaceListener(Start plugin) {
 		this.plugin = plugin;
-		this.plugin.getPocketBlockService();
+		this.pocketBlockService = this.plugin.getPocketBlockService();
 	}
-	
+
 	@EventHandler
 	public void onBlockPlace(BlockPlaceEvent event) {
-		//TODO identify way for placed block
-		if(event.getBlock().getBlockData().getMaterial() != PocketBlockTypes.CANON.getBlockType()) return;
+		// TODO identify way for placed block
+		if (event.getBlock().getBlockData().getMaterial() != PocketBlockTypes.CANON.getBlockType())
+			return;
 
-	      Location position = event.getBlockPlaced().getLocation();
-	      Vector increment = getDirection(event.getPlayer());
-	      
-	      this.pocketBlockService.getPlacedPocketBlocks().get(0).place(event.getBlock().getWorld(), position, getDirection(event.getPlayer()));
-	   }
+		Location position = event.getBlockPlaced().getLocation();
+		Vector increment = getDirection(event.getPlayer());
 
-	   public static Vector getDirection(Player player) {
+		this.pocketBlockService.getPlacedPocketBlocks().get(0).place(event.getBlock().getWorld(), position,
+				getDirection(event.getPlayer()));
+	}
 
-	      double rotation = (player.getLocation().getYaw() - 90) % 360;
-	      if (rotation < 0) rotation += 360.0;
+	public static Vector getDirection(Player player) {
 
-	      if (0 <= rotation && rotation < 45) return N;
-	      else if (45 <= rotation && rotation < 135) return E;
-	      else if (135 <= rotation && rotation < 225) return S;
-	      else if (225 <= rotation && rotation < 315) return W;
-	      else return N;
-	   }
+		double rotation = (player.getLocation().getYaw() - 90) % 360;
+		if (rotation < 0)
+			rotation += 360.0;
+
+		if (0 <= rotation && rotation < 45)
+			return N;
+		else if (45 <= rotation && rotation < 135)
+			return E;
+		else if (135 <= rotation && rotation < 225)
+			return S;
+		else if (225 <= rotation && rotation < 315)
+			return W;
+		else
+			return N;
+	}
 }

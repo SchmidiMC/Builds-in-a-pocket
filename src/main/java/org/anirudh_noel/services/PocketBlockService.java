@@ -31,10 +31,8 @@ public class PocketBlockService {
 		PocketBlock block = new PocketBlock(type);
 		if (block.registerClipboard(this.plugin)) {
 			this.placedPocketBlocks.add(block);
-			System.out.println("successful registered");
 			return block;
 		}
-		System.out.println("could not register clipboard");
 		return null;
 	}
 
