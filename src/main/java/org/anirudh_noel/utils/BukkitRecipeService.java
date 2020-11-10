@@ -25,7 +25,7 @@ public class BukkitRecipeService {
 
 		for (PocketBlockTypes type : PocketBlockTypes.values()) {
 
-			PocketBlock pocketBlock = this.pocketBlockService.createPocketBlock(PocketBlockTypes.CANON);
+			PocketBlock pocketBlock = this.pocketBlockService.createPocketBlock(type);
 			ItemStack item  = pocketBlock.getItemStack();
 			NamespacedKey key = new NamespacedKey(plugin, type.getNamedKey());
 			ShapedRecipe recipe = new ShapedRecipe(key, item);
